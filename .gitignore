@@ -1,0 +1,6 @@
+# C/C++ build files
+obj/
+*.o
+
+# Program binary
+game
