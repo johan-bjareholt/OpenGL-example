@@ -4,10 +4,13 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
+#include "main.hpp"
+#include "input.hpp"
 #include "display.hpp"
 #include "shader.hpp"
 #include "mesh.hpp"
 
+bool running = true;
 
 int main(){
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -16,26 +19,38 @@ int main(){
 
     std::cout << "Initializing shaders" << std::endl;
     Shader shader("./shaders/basic_shader");
-    
+
     std::cout << "Initializing vertices" << std::endl;
     Vertex vertices[] = {
-        Vertex(glm::vec3(-0.5,-0.5,0)),
-        Vertex(glm::vec3(0,0.5,0)),
-        Vertex(glm::vec3(0.5,-0.5,0)),
+        Vertex( glm::vec3(-1.0, -0.5,   0.0),
+                glm::vec3(1.0,  0.0,    0.0)),
+        Vertex( glm::vec3(-0.5, 0.5,    0.0),
+                glm::vec3(0.0,  1.0,    0.0)),
+        Vertex( glm::vec3(0.0,  -0.5,   0.0),
+                glm::vec3(0.0,  0.0,    1.0)),
     };
     Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]));
 
-    bool running = true;
+    Vertex vertices2[] = {
+        Vertex( glm::vec3(1.0,  -0.5,   0.0),
+                glm::vec3(1.0,  0.0,    0.0)),
+        Vertex( glm::vec3(0.5,  0.5,    0.0),
+                glm::vec3(0.0,  1.0,    0.0)),
+        Vertex( glm::vec3(0.0,  -0.5,   0.0),
+                glm::vec3(0.0,  0.0,    1.0)),
+    };
+    Mesh mesh2(vertices2, sizeof(vertices2)/sizeof(vertices2[0]));
+
     while (running){
-        SDL_Event e;
-        while (SDL_PollEvent(&e)){
-            if (e.type == SDL_QUIT)
-                running = false;
-        }
+        SDL_Event event;
+
+        input();
+
         shader.bind();
-        
+
         mesh.draw();
-        
+        mesh2.draw();
+
         display.update();
     }
 

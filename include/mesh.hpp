@@ -3,10 +3,11 @@
 
 class Vertex {
     public:
-        Vertex(const glm::vec3& pos);
+        Vertex(const glm::vec3& pos, const glm::vec3& color);
     protected:
     private:
         glm::vec3 pos;
+        glm::vec3 color;
 };
 
 class Mesh {
@@ -15,13 +16,9 @@ class Mesh {
         ~Mesh();
         void draw();
     private:
-        enum {
-            POSITION_VB,
-            BUFFER_COUNT
-        };
 
         GLuint vertexArrayObject;
-        GLuint vertexArrayBuffers[BUFFER_COUNT];
+        GLuint vertexArrayBuffer;
         unsigned int drawCount;
 };
 

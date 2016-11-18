@@ -1,25 +1,36 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include <iostream>
 
 #include "mesh.hpp"
 
-Vertex::Vertex(const glm::vec3& pos){
+Vertex::Vertex(const glm::vec3& pos, const glm::vec3& color){
     this->pos = pos;
+    this->color = color;
 }
 
 Mesh::Mesh(Vertex* vertices, unsigned int vertex_count){
+    // How many vertexes to draw (Since we only allow triangles it should always be 3)
     drawCount = vertex_count;
 
+    // Generate vertex array object name (p1 = count to generate, p2 = arrptr)
     glGenVertexArrays(1, &vertexArrayObject);
+    // Bind a vertex array object
     glBindVertexArray(vertexArrayObject);
 
-    glGenBuffers(BUFFER_COUNT, vertexArrayBuffers);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffers[POSITION_VB]);
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+
+    // Generate buffer object names for our vertices
+    glGenBuffers(1, &vertexArrayBuffer);
+    // Binds out Vertex buffer
+    glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertex_count * sizeof(vertices[0]), vertices, GL_STATIC_DRAW);
 
-    glEnableVertexAttribArray(0);
     // Index, count, type, normalize, spacing, start
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]), 0);
+
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]), (const void*)(3*sizeof(GLfloat)));
 
     glBindVertexArray(0);
 }
