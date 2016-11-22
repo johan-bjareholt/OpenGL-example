@@ -3,11 +3,11 @@
 
 class Vertex {
     public:
-        Vertex(const glm::vec3& pos, const glm::vec3& color);
+        Vertex(const glm::vec4& pos, const glm::vec4& color);
     protected:
     private:
-        glm::vec3 pos;
-        glm::vec3 color;
+        glm::vec4 pos;
+        glm::vec4 color;
 };
 
 class Mesh {

@@ -22,22 +22,22 @@ int main(){
 
     std::cout << "Initializing vertices" << std::endl;
     Vertex vertices[] = {
-        Vertex( glm::vec3(-1.0, -0.5,   0.0),
-                glm::vec3(1.0,  0.0,    0.0)),
-        Vertex( glm::vec3(-0.5, 0.5,    0.0),
-                glm::vec3(0.0,  1.0,    0.0)),
-        Vertex( glm::vec3(0.0,  -0.5,   0.0),
-                glm::vec3(0.0,  0.0,    1.0)),
+        Vertex( glm::vec4(-1.0, -0.5,  0.0,  1.0),
+                glm::vec4( 1.0,  0.0,  0.0,  1.0)),
+        Vertex( glm::vec4(-0.5,  0.5,  0.0,  1.0),
+                glm::vec4( 0.0,  1.0,  0.0,  1.0)),
+        Vertex( glm::vec4( 0.0, -0.5,  0.0,  1.0),
+                glm::vec4( 0.0,  0.0,  1.0,  1.0)),
     };
     Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]));
 
     Vertex vertices2[] = {
-        Vertex( glm::vec3(1.0,  -0.5,   0.0),
-                glm::vec3(1.0,  0.0,    0.0)),
-        Vertex( glm::vec3(0.5,  0.5,    0.0),
-                glm::vec3(0.0,  1.0,    0.0)),
-        Vertex( glm::vec3(0.0,  -0.5,   0.0),
-                glm::vec3(0.0,  0.0,    1.0)),
+        Vertex( glm::vec4( 1.0, -0.5,  0.0,  1.0),
+                glm::vec4( 1.0,  0.0,  0.0,  1.0)),
+        Vertex( glm::vec4( 0.5,  0.5,  0.0,  1.0),
+                glm::vec4( 0.0,  1.0,  0.0,  1.0)),
+        Vertex( glm::vec4( 0.0, -0.5,  0.0,  1.0),
+                glm::vec4( 0.0,  0.0,  1.0,  1.0)),
     };
     Mesh mesh2(vertices2, sizeof(vertices2)/sizeof(vertices2[0]));
 

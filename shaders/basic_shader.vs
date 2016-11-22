@@ -1,10 +1,39 @@
 #version 130
 
-in vec3 v_position;
-in vec3 v_color;
+#define PI 3.1415926535897932384626433832795
+
+in vec4 v_position;
+in vec4 v_color;
 
 void main(){
-    gl_FrontColor = vec4(v_color, 1.0);
-    gl_BackColor = vec4(v_color, 1.0);
-    gl_Position = vec4(v_position, 1.0);
+    float timer = PI/4;
+
+    // Default aspect ratio is 4:3
+    const float ar  = 600.0/800.0;
+    const float ari = 800.0/600.0;
+
+    const mat4 projection = mat4(
+        vec4(ar,  0.0, 0.0, 0.0),
+        vec4(0.0, 1.0, 0.0, 0.0),
+        vec4(0.0, 0.0, 0.5, 0.5),
+        vec4(0.0, 0.0, 0.0, 1.0)
+    );
+
+    mat4 rotation = mat4(
+        vec4(1.0,         0.0,         0.0, 0.0),
+        vec4(0.0,  cos(timer),  sin(timer), 0.0),
+        vec4(0.0, -sin(timer),  cos(timer), 0.0),
+        vec4(0.0,         0.0,         0.0, 1.0)
+    );
+    mat4 scale = mat4(
+        vec4(ari, 0.0, 0.0, 0.0),
+        vec4(0.0, 1.0, 0.0, 0.0),
+        vec4(0.0, 0.0, 1.0, 0.0),
+        vec4(0.0, 0.0, 0.0, 1.0)
+    );
+
+    gl_Position = projection * rotation * scale * v_position;
+
+    gl_FrontColor = v_color;
+    gl_BackColor = v_color;
 }
