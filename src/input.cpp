@@ -17,11 +17,28 @@ void input(){
             keyboardstate[event.key.keysym.sym] = true;
         else if (event.type == SDL_KEYUP && event.key.keysym.sym <= 322)
             keyboardstate[event.key.keysym.sym] = false;
-        // 
-        switch (event.key.keysym.sym){
-            case SDLK_RETURN:
-                std::cout << "Pressed enter" << std::endl;
-                break;
+
+        // On keydown
+        if (event.type == SDL_KEYDOWN){
+            switch (event.key.keysym.sym){
+                case SDLK_RETURN:
+                    std::cout << "Pressed enter" << std::endl;
+                    break;
+            }
+        }
+
+        // Movement
+        if (keyboardstate[SDLK_w])
+            camera->translateCamera(glm::vec4(0.0f, -0.01f, -0.0f, 0.0f));
+        if (keyboardstate[SDLK_s])
+            camera->translateCamera(glm::vec4(0.0f, 0.01f, 0.0f, 0.0f));
+        if (keyboardstate[SDLK_a])
+            camera->translateCamera(glm::vec4(0.01f, 0.0f, 0.0f, 0.0f));
+        if (keyboardstate[SDLK_d])
+            camera->translateCamera(glm::vec4(-0.01f, 0.0f, 0.0f, 0.0f));
+        if (event.type == SDL_MOUSEWHEEL){
+            SDL_MouseWheelEvent* mwe = (SDL_MouseWheelEvent*) &event;
+            camera->translateCamera(glm::vec4(0.01f*mwe->y, 0.0f, 0.01f*mwe->y, 0.0f));
         }
     }
 }

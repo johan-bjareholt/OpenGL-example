@@ -5,8 +5,10 @@
 in vec4 v_position;
 in vec4 v_color;
 
+uniform vec4 camera;
+
 void main(){
-    float timer = PI/4;
+    float timer = PI/3;
 
     // Default aspect ratio is 4:3
     const float ar  = 600.0/800.0;
@@ -15,7 +17,7 @@ void main(){
     const mat4 projection = mat4(
         vec4(ar,  0.0, 0.0, 0.0),
         vec4(0.0, 1.0, 0.0, 0.0),
-        vec4(0.0, 0.0, 0.5, 0.5),
+        vec4(0.0, 0.0, 1.0, 0.0),
         vec4(0.0, 0.0, 0.0, 1.0)
     );
 
@@ -32,7 +34,7 @@ void main(){
         vec4(0.0, 0.0, 0.0, 1.0)
     );
 
-    gl_Position = projection * rotation * scale * v_position;
+    gl_Position = (projection * rotation * scale * v_position) + camera;
 
     gl_FrontColor = v_color;
     gl_BackColor = v_color;

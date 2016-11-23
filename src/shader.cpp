@@ -7,7 +7,7 @@
 #include "shader.hpp"
 
 Shader::Shader(const std::string filename){
-    program = glCreateProgram();
+    this->program = glCreateProgram();
 
     shaders[0] = create_shader(load_shader(filename+".vs"), GL_VERTEX_SHADER);
     shaders[1] = create_shader(load_shader(filename+".fs"), GL_FRAGMENT_SHADER);
@@ -19,7 +19,7 @@ Shader::Shader(const std::string filename){
 
     glLinkProgram(program);
     check_program_error(program, GL_LINK_STATUS, "Error: Program linking failed");
-    
+
     glValidateProgram(program);
     check_program_error(program, GL_VALIDATE_STATUS, "Error: Program is invalid");
 }
@@ -50,7 +50,7 @@ GLuint Shader::create_shader(const std::string& text, GLenum shader_type){
 
     glShaderSource(shader, 1, shaderSourceStrings, shaderSourceStringLengths);
     glCompileShader(shader);
-    
+
     check_shader_error(shader, GL_COMPILE_STATUS, "Error: Shader compilation failed");
 
     return shader;

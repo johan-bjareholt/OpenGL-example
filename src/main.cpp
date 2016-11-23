@@ -9,8 +9,14 @@
 #include "display.hpp"
 #include "shader.hpp"
 #include "mesh.hpp"
+#include "texture.hpp"
+#include "camera.hpp"
+
+#include "bth_image.hpp"
 
 bool running = true;
+
+Camera* camera;
 
 int main(){
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -41,12 +47,18 @@ int main(){
     };
     Mesh mesh2(vertices2, sizeof(vertices2)/sizeof(vertices2[0]));
 
+    Texture tex(BTH_IMAGE_WIDTH, BTH_IMAGE_HEIGHT, BTH_IMAGE_DATA);
+
+    Camera cam(shader.program);
+    camera = &cam;
+
     while (running){
         SDL_Event event;
 
         input();
 
         shader.bind();
+        camera->updatePos();
 
         mesh.draw();
         mesh2.draw();

@@ -3,14 +3,14 @@
 class Shader {
     private:
         static const unsigned int NUM_SHADERS = 2;
-        GLuint program;
         GLuint shaders[NUM_SHADERS];
 
     public:
         Shader(const std::string filename);
         ~Shader();
+        GLuint program;
         void bind();
-    
+
     private:
         GLuint create_shader(const std::string& text, GLenum shader_type);
         std::string load_shader(const std::string& fileName);

@@ -6,7 +6,7 @@ LIBS=-lGL -lGLEW -lSDL2
 INCLUDES=-I./include
 CPPFLAGS=-g $(LIBS) $(INCLUDES)
 
-SRCF=main.cpp display.cpp shader.cpp mesh.cpp input.cpp
+SRCF=main.cpp display.cpp shader.cpp mesh.cpp input.cpp texture.cpp camera.cpp
 SRC=$(patsubst %.cpp,src/%.cpp,$(SRCF))
 OBJ=$(patsubst %.cpp,obj/%.o,$(SRCF))
 
