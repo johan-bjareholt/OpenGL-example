@@ -2,10 +2,21 @@
 #include <iostream>
 #include <cstring>
 
+#include <GL/glu.h>
+
+#define PI 3.1415926535897932384626433832795
+
 Camera::Camera(GLuint program){
     this->program = program;
     this->ubid = glGetUniformLocation(program, "camera");
     memset(campos, 0, sizeof(campos));
+
+    // Set camera perspective
+    glMatrixMode( GL_PROJECTION );
+    glLoadIdentity();
+    gluPerspective(90, 800/600, 0.1,  10.0); // Viewing angle, aspect ratio, near, far
+    glMatrixMode( GL_MODELVIEW );
+    glLoadIdentity();
 }
 
 void Camera::updatePos(){

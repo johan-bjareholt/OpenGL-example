@@ -16,7 +16,7 @@ Display::Display(int width, int height, const std::string title){
     SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
     // Double buffer
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    
+
     this->window = SDL_CreateWindow(
             title.c_str(),
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -25,6 +25,9 @@ Display::Display(int width, int height, const std::string title){
     );
     this->glContext = SDL_GL_CreateContext(window);
     std::cout << "OpenGL version is " << glGetString(GL_VERSION) << std::endl;
+
+    // Disable frame limit
+    //SDL_GL_SetSwapInterval(0);
 
     GLenum status = glewInit();
 
