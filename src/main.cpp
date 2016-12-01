@@ -34,34 +34,24 @@ int main(){
 
     std::cout << "Initializing vertices" << std::endl;
     Vertex vertices[] = {
-        Vertex( glm::vec4(-1.0, -0.5,  0.0,  1.0),
+        Vertex( glm::vec4(-1.0, -1.0,  0.0,  0.0),
                 glm::vec4( 1.0,  0.0,  0.0,  1.0)),
-        Vertex( glm::vec4(-0.5,  0.5,  0.0,  1.0),
+        Vertex( glm::vec4( 0.0,  1.0,  0.0,  0.0),
                 glm::vec4( 0.0,  1.0,  0.0,  1.0)),
-        Vertex( glm::vec4( 0.0, -0.5,  0.0,  1.0),
+        Vertex( glm::vec4( 1.0, -1.0,  0.0,  0.0),
                 glm::vec4( 0.0,  0.0,  1.0,  1.0)),
     };
-    Mesh mesh(vertices, sizeof(vertices)/sizeof(vertices[0]));
+    Mesh mesh(  shader.program,
+                vertices, sizeof(vertices)/sizeof(vertices[0]),
+                glm::vec4(0.7, 0.0, 0.0, -2.0), glm::vec3(0.0, 0.0, 0.0));
 
-    Vertex vertices2[] = {
-        Vertex( glm::vec4( 1.0, -0.5,  0.0,  1.0),
-                glm::vec4( 1.0,  0.0,  0.0,  1.0)),
-        Vertex( glm::vec4( 0.5,  0.5,  0.0,  1.0),
-                glm::vec4( 0.0,  1.0,  0.0,  1.0)),
-        Vertex( glm::vec4( 0.0, -0.5,  0.0,  1.0),
-                glm::vec4( 0.0,  0.0,  1.0,  1.0)),
-    };
-    Mesh mesh2(vertices2, sizeof(vertices2)/sizeof(vertices2[0]));
+    Mesh mesh2( shader.program,
+                vertices, sizeof(vertices)/sizeof(vertices[0]),
+                glm::vec4(-0.7, 0.0, 0.0, -2.0), glm::vec3(0.0, 0.0, 0.0));
 
-    Vertex vertices3[] = {
-        Vertex( glm::vec4(-0.5, -0.5,  0.0,  2.0),
-                glm::vec4( 1.0,  0.0,  0.0,  1.0)),
-        Vertex( glm::vec4( 0.0,  0.5,  0.0,  2.0),
-                glm::vec4( 0.0,  1.0,  0.0,  1.0)),
-        Vertex( glm::vec4( 0.5, -0.5,  0.0,  2.0),
-                glm::vec4( 0.0,  0.0,  1.0,  1.0)),
-    };
-    Mesh mesh3(vertices3, sizeof(vertices2)/sizeof(vertices2[0]));
+    Mesh mesh3( shader.program,
+                vertices, sizeof(vertices)/sizeof(vertices[0]),
+                glm::vec4(0.0, 0.0, 0.0, -4.0), glm::vec3(0.0, 0.0, 0.0));
 
     Texture tex(BTH_IMAGE_WIDTH, BTH_IMAGE_HEIGHT, BTH_IMAGE_DATA);
 

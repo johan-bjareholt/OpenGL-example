@@ -5,6 +5,7 @@
 in vec4 v_position;
 in vec4 v_color;
 
+uniform vec4 w_position;
 uniform vec4 camera;
 
 void main(){
@@ -45,7 +46,7 @@ void main(){
         vec4(0.0, 0.0, 0.0,     1.0)
     );
 
-    gl_Position = vec4(scale * rotation * v_position) + camera;
+    gl_Position = vec4(scale * rotation * v_position) - camera - w_position;
 
     gl_FrontColor = v_color;
     gl_BackColor = v_color;

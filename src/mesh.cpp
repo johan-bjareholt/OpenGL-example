@@ -9,7 +9,12 @@ Vertex::Vertex(const glm::vec4& pos, const glm::vec4& color){
     this->color = color;
 }
 
-Mesh::Mesh(Vertex* vertices, unsigned int vertex_count){
+Mesh::Mesh(GLuint program, Vertex* vertices, unsigned int vertex_count, const glm::vec4& pos, const glm::vec3& rotation){
+    // Set object attributes
+    this->program = program;
+    this->uniform_wpos_id = glGetUniformLocation(program, "w_position");
+    this->pos = pos;
+    this->rotation = rotation;
     // How many vertexes to draw (Since only allow triangles works it should always be 3)
     drawCount = vertex_count;
 
@@ -23,15 +28,15 @@ Mesh::Mesh(Vertex* vertices, unsigned int vertex_count){
 
     // Generate buffer object names for our vertices
     glGenBuffers(1, &vertexArrayBuffer);
+    glGenBuffers(1, &worldPositionBuffer);
     // Binds out Vertex buffer
     glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffer);
     glBufferData(GL_ARRAY_BUFFER, vertex_count * sizeof(vertices[0]), vertices, GL_STATIC_DRAW);
-
     // Index, count, type, normalize, spacing, start
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), 0);
-
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), (const void*)(4*sizeof(GLfloat)));
 
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
 
@@ -41,6 +46,8 @@ Mesh::~Mesh(){
 
 void Mesh::draw(){
     glBindVertexArray(vertexArrayObject);
+
+    glUniform4fv(uniform_wpos_id, 1, (const GLfloat*)&this->pos);
 
     glDrawArrays(GL_TRIANGLES, 0, drawCount);
 
