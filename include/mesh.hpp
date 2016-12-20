@@ -3,11 +3,9 @@
 
 class Vertex {
     public:
-        Vertex(const glm::vec4& pos, const glm::vec4& color);
-    protected:
-    private:
         glm::vec4 pos;
-        glm::vec4 color;
+        glm::vec2 texcoord;
+        Vertex(const glm::vec4& pos, const glm::vec2& texcoord);
 };
 
 class Mesh {
@@ -25,7 +23,6 @@ class Mesh {
         GLuint vertexArrayObject;
 
         GLuint vertexArrayBuffer;
-        GLuint worldPositionBuffer;
 
         unsigned int drawCount;
 };

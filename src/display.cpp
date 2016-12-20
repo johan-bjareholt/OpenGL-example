@@ -43,6 +43,6 @@ Display::~Display(){
 
 void Display::update(){
     SDL_GL_SwapWindow(window);
-    glClearColor(0.f, 0.f, 0.15f, 1.f);
+    glClearColor(0.f, 0.f, 0.40f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT);
 }

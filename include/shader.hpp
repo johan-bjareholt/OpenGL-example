@@ -12,10 +12,10 @@ class Shader {
         void bind();
 
     private:
-        GLuint create_shader(const std::string& text, GLenum shader_type);
+        GLuint create_shader(const std::string& text, GLenum shader_type, const std::string name);
         std::string load_shader(const std::string& fileName);
 
-        void check_shader_error(GLuint shader, GLuint flag, const std::string& errorMessage);
-        void check_program_error(GLuint program, GLuint flag, const std::string& errorMessage);
+        void check_shader_error(GLuint shader, GLuint flag, const std::string& shadername);
+        void check_program_error(GLuint program, GLuint flag, const std::string& progname, const std::string& stage);
 };
 

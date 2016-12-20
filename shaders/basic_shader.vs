@@ -2,9 +2,14 @@
 
 #define PI 3.1415926535897932384626433832795
 
+// Vector attributes
 in vec4 v_position;
-in vec4 v_color;
+in vec2 v_texcoord;
 
+// Fragment shader arguments
+varying vec2 texCoord0;
+
+// Uniforms
 uniform vec4 w_position;
 uniform vec4 camera;
 
@@ -13,8 +18,8 @@ void main(){
     const float ar  = 600.0/800.0;
 
     // Rotation
-    float angx = 0;
-    float angy = PI/4;
+    float angx = 0;//PI/4;
+    float angy = 0;//PI/4;
     float angz = 0;
 
     mat4 rotx = mat4(
@@ -46,8 +51,15 @@ void main(){
         vec4(0.0, 0.0, 0.0,     1.0)
     );
 
+    //if (v_texcoord.x != 0 && v_texcoord.y != 0)
+    //if (v_rotation.x != 0 && v_rotation.y != 0)
+    //gl_Position = vec4(v_position.x, v_position.y, 0, 1) - camera - w_position;
+    //else
+    //    gl_Position = vec4(0,0,0,0);
     gl_Position = vec4(scale * rotation * v_position) - camera - w_position;
+    //gl_Position = vec4(v_texcoord.s, v_texcoord.t, 0, 0) - camera - w_position;
 
-    gl_FrontColor = v_color;
-    gl_BackColor = v_color;
+    //gl_FrontColor = v_color;
+
+    texCoord0 = v_texcoord;
 }

@@ -6,10 +6,9 @@ class Texture {
     public:
         GLuint width, height;
         GLuint id;
-        GLfloat* pixels;
 
         Texture(int width, int height, unsigned char* pixels);
         ~Texture();
 
-        void Bind(unsigned int unit);
+        void bind(unsigned int unit);
 };
