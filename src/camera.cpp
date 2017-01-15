@@ -8,8 +8,9 @@
 
 Camera::Camera(GLuint program){
     this->program = program;
-    this->ubid = glGetUniformLocation(program, "camera");
-    memset(campos, 0, sizeof(campos));
+    this->ubid = glGetUniformLocation(program, "cam_pos");
+    //this->view_mat_ubid = glGetUniformLocation(program, "view_mat");
+    //this->proj_mat_ubid = glGetUniformLocation(program, "proj_mat");
 
     // Set camera perspective
     glMatrixMode( GL_PROJECTION );
@@ -21,6 +22,9 @@ Camera::Camera(GLuint program){
 
 void Camera::updatePos(){
     glUniform4fv(ubid, 1, campos);
+    //glUniform4fv(world_mat_ubid, 1, (GLfloat*)&world_mat);
+    //glUniform4fv(view_mat_ubid, 1, (GLfloat*)&view_mat);
+    //glUniform4fv(proj_mat_ubid, 1, (GLfloat*)&proj_mat);
 }
 
 void Camera::moveCamera(const glm::vec4& pos){
@@ -28,6 +32,7 @@ void Camera::moveCamera(const glm::vec4& pos){
     campos[1] = pos.y;
     campos[2] = pos.z;
     campos[3] = pos.w;
+    //world_mat = (pos * glm::mat4());
 }
 
 void Camera::translateCamera(const glm::vec4& pos){
@@ -35,4 +40,8 @@ void Camera::translateCamera(const glm::vec4& pos){
     campos[1] += pos.y;
     campos[2] += pos.z;
     campos[3] += pos.w;
+    //world_mat[0] += pos.x;
+    //world_mat[1] += pos.y;
+    //world_mat[2] += pos.z;
+    //world_mat[3] += pos.w;
 }

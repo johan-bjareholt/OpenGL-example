@@ -11,7 +11,9 @@ varying vec2 texCoord0;
 
 // Uniforms
 uniform vec4 w_position;
-uniform vec4 camera;
+uniform vec4 cam_pos;
+//uniform mat4 view_mat;
+//uniform mat4 proj_mat;
 
 void main(){
     // Default aspect ratio is 4:3
@@ -20,7 +22,7 @@ void main(){
     // Rotation
     float angx = 0;//PI/4;
     float angy = 0;//PI/4;
-    float angz = 0;
+    float angz = 0;//PI/4;
 
     mat4 rotx = mat4(
         vec4(1.0,   0.0,        0.0,        0.0),
@@ -53,11 +55,11 @@ void main(){
 
     //if (v_texcoord.x != 0 && v_texcoord.y != 0)
     //if (v_rotation.x != 0 && v_rotation.y != 0)
-    //gl_Position = vec4(v_position.x, v_position.y, 0, 1) - camera - w_position;
+    //gl_Position = vec4(v_position.x, v_position.y, 0, 1) - cam_pos - w_position;
     //else
     //    gl_Position = vec4(0,0,0,0);
-    gl_Position = vec4(scale * rotation * v_position) - camera - w_position;
-    //gl_Position = vec4(v_texcoord.s, v_texcoord.t, 0, 0) - camera - w_position;
+    gl_Position = vec4(scale * rotation * v_position) - cam_pos - w_position;
+    //gl_Position = vec4(v_texcoord.s, v_texcoord.t, 0, 0) - cam_pos - w_position;
 
     //gl_FrontColor = v_color;
 

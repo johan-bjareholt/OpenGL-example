@@ -60,11 +60,11 @@ int main(){
 
     Mesh mesh(  shader.program,
                 vertices, sizeof(vertices)/sizeof(vertices[0]),
-                glm::vec4(0.7, 0.0, 0.0, -2.0), glm::vec3(1.0, 0.0, 0.0));
+                glm::vec4(1.2, 0.0, 0.0, -2.0), glm::vec3(1.0, 0.0, 0.0));
 
     Mesh mesh2( shader.program,
                 vertices, sizeof(vertices)/sizeof(vertices[0]),
-                glm::vec4(-0.7, 0.0, 0.0, -2.0), glm::vec3(1.0, 0.0, 0.0));
+                glm::vec4(-1.2, 0.0, 0.0, -2.0), glm::vec3(1.0, 0.0, 0.0));
 
     Mesh mesh3( shader.program,
                 vertices, sizeof(vertices)/sizeof(vertices[0]),
@@ -79,10 +79,11 @@ int main(){
 
     Texture tex(BTH_IMAGE_WIDTH, BTH_IMAGE_HEIGHT, BTH_IMAGE_DATA);
     unsigned char testtex[] = {
-        255,255,255,255,  0,0,0,255,
-        0,0,0,255,  255,255,255
+        255,0,0,255,  0,255,0,255, 0,0,255,255,
+        0,255,0,255,  0,0,255,255, 255,0,0,255,
+        0,0,255,255,  255,0,0,255, 0,255,0,255
     };
-    Texture tex2(2,2, testtex);
+    Texture tex2(3,3, testtex);
 
     timer.start();
 
