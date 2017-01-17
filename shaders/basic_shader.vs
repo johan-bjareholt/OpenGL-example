@@ -7,7 +7,7 @@ in vec4 v_position;
 in vec2 v_texcoord;
 
 // Fragment shader arguments
-varying vec2 texCoord0;
+out vec2 texCoord0;
 
 // Uniforms
 uniform vec4 w_position;
