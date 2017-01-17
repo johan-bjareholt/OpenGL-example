@@ -14,18 +14,6 @@ Camera::Camera(GLuint program){
     this->ubid = glGetUniformLocation(program, "cam_pos");
     this->mvp_mat_ubid = glGetUniformLocation(program, "mvp_mat");
     this->moveCamera(glm::vec3(0.f, 0.f, -2.f));
-}
-
-void Camera::updatePos(){
-    // Model (identity matrix, will be at origin)
-    model_mat = glm::mat4(1.0f);
-
-    // View
-    view_mat = glm::lookAt(
-        campos, // Camera is at (4,3,3), in World Space
-        glm::vec3(0,0,0), // and looks at the origin
-        glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
-    );
 
     // Projection
     proj_mat = glm::perspective(
@@ -33,6 +21,22 @@ void Camera::updatePos(){
         4.0f/3.0f,  // Aspect Ratio. Depends on the size of your window. 4/3 == 800/600
         0.1f,       // Near clipping plane. Keep as big as possible, or you'll get precision issues.
         10.0f       // Far clipping plane. Keep as little as possible if you don't need long viewing distance
+    );
+
+}
+
+static float angle = 0;
+void Camera::updatePos(){
+    // Model (identity matrix, will be at origin)
+    model_mat = glm::mat4(1.0f);
+    angle += 0.05;
+    model_mat = glm::rotate(model_mat, angle, glm::vec3(0,1,0));
+
+    // View
+    view_mat = glm::lookAt(
+        campos, // Camera is at (4,3,3), in World Space
+        glm::vec3(0,0,0), // and looks at the origin
+        glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
     );
 
     mvp_mat = proj_mat*view_mat*model_mat;
