@@ -9,6 +9,7 @@
 Camera::Camera(GLuint program){
     this->program = program;
     this->ubid = glGetUniformLocation(program, "cam_pos");
+    memset(campos, 0, sizeof(campos));
     //this->view_mat_ubid = glGetUniformLocation(program, "view_mat");
     //this->proj_mat_ubid = glGetUniformLocation(program, "proj_mat");
 
