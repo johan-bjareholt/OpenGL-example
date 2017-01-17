@@ -1,5 +1,7 @@
-3D engine
+OpenGL 3D Example
 =========
+
+A small 3D engine for OpenGL with basic functionality
 
 ### Dependencies
 
