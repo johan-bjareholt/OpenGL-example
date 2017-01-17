@@ -29,16 +29,16 @@ void input(){
 
         // Movement
         if (keyboardstate[SDLK_w])
-            camera->translateCamera(glm::vec4(0.0f, 0.01f, 0.0f, 0.0f));
+            camera->translateCamera(glm::vec3(0.0f, 0.01f, 0.0f));
         if (keyboardstate[SDLK_s])
-            camera->translateCamera(glm::vec4(0.0f, -0.01f, 0.0f, 0.0f));
+            camera->translateCamera(glm::vec3(0.0f, -0.01f, 0.0f));
         if (keyboardstate[SDLK_a])
-            camera->translateCamera(glm::vec4(-0.01f, 0.0f, 0.0f, 0.0f));
+            camera->translateCamera(glm::vec3(-0.01f, 0.0f, 0.0f));
         if (keyboardstate[SDLK_d])
-            camera->translateCamera(glm::vec4(0.01f, 0.0f, 0.0f, 0.0f));
+            camera->translateCamera(glm::vec3(0.01f, 0.0f, 0.0f));
         if (event.type == SDL_MOUSEWHEEL){
             SDL_MouseWheelEvent* mwe = (SDL_MouseWheelEvent*) &event;
-            camera->translateCamera(glm::vec4(0.f, 0.f, 0.f, mwe->y*0.01f));
+            camera->translateCamera(glm::vec3(0.f, 0.f, 0.f));
         }
     }
 }
