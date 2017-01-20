@@ -2,7 +2,7 @@
 
 class Shader {
     private:
-        static const unsigned int NUM_SHADERS = 2;
+        static const unsigned int NUM_SHADERS = 3;
         GLuint shaders[NUM_SHADERS];
 
     public:

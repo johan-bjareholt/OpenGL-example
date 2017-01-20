@@ -7,7 +7,7 @@ in vec4 v_position;
 in vec2 v_texcoord;
 
 // Fragment shader arguments
-out vec2 texCoord0;
+out vec2 texCoordVs;
 
 // Uniforms
 uniform vec4 w_position;
@@ -19,6 +19,6 @@ void main(){
     //gl_Position = v_position-w_position;
     gl_Position = mvp_mat * vec4(v_position-w_position);
 
-    texCoord0 = v_texcoord;
+    texCoordVs = v_texcoord;
     //gl_FrontColor = v_color;
 }
