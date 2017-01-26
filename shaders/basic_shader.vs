@@ -17,7 +17,7 @@ uniform mat4 mvp_mat;
 
 void main(){
     //gl_Position = v_position-w_position;
-    gl_Position = mvp_mat * vec4(v_position-w_position);
+    gl_Position = vec4(v_position-w_position);
 
     texCoordVs = v_texcoord;
     //gl_FrontColor = v_color;

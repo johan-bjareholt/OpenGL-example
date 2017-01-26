@@ -50,10 +50,10 @@ int main(){
                 glm::vec2( 1.0,  1.0)),
     };
     Vertex vertices_s2[] = {
-        Vertex( glm::vec4( 1.0,  1.0,  0.0,  0.0),
-                glm::vec2( 1.0,  1.0)),
         Vertex( glm::vec4(-1.0, -1.0,  0.0,  0.0),
                 glm::vec2( 0.0,  0.0)),
+        Vertex( glm::vec4( 1.0,  1.0,  0.0,  0.0),
+                glm::vec2( 1.0,  1.0)),
         Vertex( glm::vec4( 1.0, -1.0,  0.0,  0.0),
                 glm::vec2( 1.0,  0.0)),
     };
@@ -65,10 +65,6 @@ int main(){
     Mesh mesh2( shader.program,
                 vertices, sizeof(vertices)/sizeof(vertices[0]),
                 glm::vec4(-1.2, 0.0, 0.0, -2.0), glm::vec3(1.0, 0.0, 0.0));
-
-    Mesh mesh3( shader.program,
-                vertices, sizeof(vertices)/sizeof(vertices[0]),
-                glm::vec4(0.0, 0.0, 0.0, -4.0), glm::vec3(1.0, 0.0, 0.0));
 
     Mesh mesh_bth1 ( shader.program,
                 vertices_s1, sizeof(vertices_s1)/sizeof(vertices_s1[0]),
@@ -99,7 +95,6 @@ int main(){
         camera->updatePos();
 
         tex.bind(0);
-        mesh3.draw();
         mesh_bth1.draw();
         mesh_bth2.draw();
         tex2.bind(0);
