@@ -97,9 +97,9 @@ int main(){
         tex.bind(0);
         mesh_bth1.draw();
         mesh_bth2.draw();
-        tex2.bind(0);
-        mesh.draw();
-        mesh2.draw();
+        //tex2.bind(0);
+        //mesh.draw();
+        //mesh2.draw();
 
         display.update();
     }
